@@ -1,1 +1,886 @@
+<!DOCTYPE html>
+<html lang="mr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>रिपब्लिकन पार्टी ऑफ महाराष्ट्र - RPM</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rpmBlue: '#1e3a8a',
+                        rpmDarkBlue: '#0f172a',
+                        rpmGold: '#d97706',
+                        rpmLightBlue: '#3b82f6'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col justify-center items-center bg-slate-900 m-0 p-0 overflow-hidden">
 
+    <div id="app-container" class="w-full max-w-md h-full sm:h-[90vh] sm:max-h-[850px] bg-slate-50 sm:rounded-3xl shadow-2xl flex flex-col relative overflow-hidden border border-slate-700">
+
+        <!-- ================= 1. SPLASH SCREEN ================= -->
+        <div id="splash-screen" class="absolute inset-0 bg-gradient-to-b from-rpmBlue via-rpmDarkBlue to-slate-900 z-50 flex flex-col items-center justify-between p-6 text-white transition-opacity duration-700">
+            <div class="w-full text-right pt-2">
+                <span class="text-xs bg-blue-600/40 px-3 py-1 rounded-full border border-blue-400/30">जय भीम • जय भारत</span>
+            </div>
+            
+            <div class="flex flex-col items-center text-center space-y-4">
+                <!-- Great Leaders Portraits Simulation (Circular Badges) -->
+                <div class="flex justify-center space-x-2 mb-2">
+                    <div class="w-14 h-14 rounded-full border-2 border-amber-400 overflow-hidden shadow-lg bg-blue-900 flex items-center justify-center">
+                        <img src="https://placehold.co/100x100/1e3a8a/ffffff?text=डॉ.बाॅर्ड" alt="Dr. B.R. Ambedkar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-14 h-14 rounded-full border-2 border-amber-400 overflow-hidden shadow-lg bg-blue-900 flex items-center justify-center">
+                        <img src="https://placehold.co/100x100/1e3a8a/ffffff?text=शिवशहू" alt="Chhatrapati Shahu Maharaj" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-14 h-14 rounded-full border-2 border-amber-400 overflow-hidden shadow-lg bg-blue-900 flex items-center justify-center">
+                        <img src="https://placehold.co/100x100/1e3a8a/ffffff?text=फुले" alt="Mahatma Phule" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Official Party Logo -->
+                <div class="w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-amber-400 overflow-hidden animate-pulse">
+                    <img src="181771.jpg" alt="RPM Official Logo" class="w-full h-full object-cover">
+                </div>
+
+                <div>
+                    <h1 class="text-2xl font-bold tracking-wide text-amber-300">रिपब्लिकन पार्टी ऑफ महाराष्ट्र</h1>
+                    <p class="text-xs text-blue-200 mt-1 uppercase tracking-widest font-medium">Republican Party of Maharashtra - RPM</p>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col items-center space-y-4 pb-4">
+                <div class="w-48 bg-slate-800 rounded-full h-1.5 overflow-hidden border border-slate-700">
+                    <div id="splash-progress" class="bg-amber-400 h-full w-0 transition-all duration-1000"></div>
+                </div>
+                <p class="text-xs text-slate-300 italic">"संविधान, कायदा आणि मानवाधिकार"</p>
+            </div>
+        </div>
+
+        <!-- ================= MAIN APP VIEW ================= -->
+        <div id="main-app" class="flex-1 flex flex-col h-full overflow-hidden hidden opacity-0 transition-opacity duration-500">
+            
+            <!-- TOP APP HEADER -->
+            <header class="bg-rpmBlue text-white px-4 py-3 shadow-md flex items-center justify-between z-10">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-amber-400 rounded-full overflow-hidden flex items-center justify-center shadow border border-amber-400">
+                        <img src="181771.jpg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold leading-tight">रिपब्लिकन पार्टी ऑफ महाराष्ट्र</h2>
+                        <span class="text-[10px] text-amber-300 font-medium">RPM Official App</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openNotificationModal()" class="w-8 h-8 rounded-full bg-blue-900/60 hover:bg-blue-800 flex items-center justify-center text-amber-300 relative">
+                        <i class="fa-solid fa-bell text-sm"></i>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <button onclick="switchTab('profile')" class="w-8 h-8 rounded-full bg-amber-400 text-rpmBlue font-bold flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- DYNAMIC CONTENT AREA -->
+            <div id="content-area" class="flex-1 overflow-y-auto pb-20">
+                
+                <!-- TAB 1: HOME (मुख्य पृष्ठ) -->
+                <div id="tab-home" class="p-4 space-y-4">
+                    
+                    <!-- Hero Banner Card -->
+                    <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden border border-blue-800">
+                        <div class="absolute -right-6 -bottom-6 opacity-10 text-9xl">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <span class="bg-amber-400 text-slate-900 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">आंबेडकरी विचारधारा</span>
+                            <h3 class="text-lg font-bold mt-2 text-amber-300">स्वातंत्र्य, समता, बंधुता आणि न्याय</h3>
+                            <p class="text-xs text-slate-200 mt-1 leading-relaxed">संविधानाचे रक्षण, हक्कांचे संरक्षण आणि सर्व महापुरुषांच्या विचारांचा वसा पुढे नेण्यासाठी कटिबद्ध.</p>
+                            <div class="mt-4 flex space-x-2">
+                                <button onclick="switchTab('membership')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs font-bold px-4 py-2 rounded-xl shadow transition">
+                                    <i class="fa-solid fa-user-plus mr-1"></i> सदस्य नोंदणी करा
+                                </button>
+                                <button onclick="switchTab('media')" class="bg-blue-800 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow transition border border-blue-700">
+                                    <i class="fa-solid fa-video mr-1"></i> मीडिया व लाईव्ह
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leadership Quote of the Day -->
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-start space-x-3">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex-shrink-0 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-quote-left"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-blue-700 uppercase tracking-wider">पक्षप्रमुख संदेश</span>
+                            <p class="text-xs text-slate-700 font-medium italic mt-0.5">"महाराष्ट्रातील सर्व घटकांना न्याय मिळवून देण्यासाठी आणि संघटन मजबूत करण्यासाठी आपण सर्वांनी एकत्र येऊन काम केले पाहिजे."</p>
+                            <p class="text-[11px] font-bold text-slate-900 mt-1">— माननीय राजुभाई साबळे <span class="text-xs font-normal text-slate-500">(पक्षप्रमुख, RPM)</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Access Grid (Quick Links) -->
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">त्वरित प्रवेश (Quick Links)</h4>
+                        <div class="grid grid-cols-4 gap-3">
+                            <div onclick="switchTab('membership')" class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-blue-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mb-1 text-sm">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </div>
+                                <span class="text-[11px] font-semibold text-slate-700 leading-tight">स्वयं-सदस्य नोंदणी</span>
+                            </div>
+                            <div onclick="switchTab('leadership')" class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-blue-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mb-1 text-sm">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                </div>
+                                <span class="text-[11px] font-semibold text-slate-700 leading-tight">पक्ष नेतृत्व कक्ष</span>
+                            </div>
+                            <div onclick="switchTab('events')" class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-blue-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mb-1 text-sm">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <span class="text-[11px] font-semibold text-slate-700 leading-tight">जयंती व कार्यक्रम</span>
+                            </div>
+                            <div onclick="switchTab('contact')" class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-blue-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center mb-1 text-sm">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </div>
+                                <span class="text-[11px] font-semibold text-slate-700 leading-tight">संपर्क कार्यालय</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROMOTIONAL / EVENT AD BANNER SLOT -->
+                    <div class="bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 rounded-2xl p-4 shadow-md text-slate-900 relative overflow-hidden border border-amber-400">
+                        <div class="absolute right-2 -bottom-4 opacity-20 text-7xl text-slate-900">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <div class="relative z-10 flex items-center justify-between">
+                            <div class="space-y-1 pr-2">
+                                <span class="bg-slate-900 text-amber-300 text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">विशेष जाहिरात / घोषणा</span>
+                                <h5 class="text-xs font-bold text-slate-900 mt-1">आगामी राज्यस्तरीय महाअधिबेसन</h5>
+                                <p class="text-[11px] text-slate-800 font-medium leading-tight">छत्रपती संभाजीनगर येथे सर्व पदाधिकाऱ्यांची विशेष बैठक. जास्तीत जास्त संख्येने उपस्थित राहा!</p>
+                            </div>
+                            <button onclick="showModal('जाहिरात तपशील', 'अधिक माहितीसाठी मध्यवर्ती कार्यालय, जवाहर कॉलनी, छत्रपती संभाजीनगर येथे संपर्क साधावा.', 'info')" class="bg-slate-900 hover:bg-slate-800 text-amber-300 text-[11px] font-bold px-3 py-2 rounded-xl shadow whitespace-nowrap transition">
+                                अधिक पहा
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- GOOGLE ADMOB BANNER AD SLOT (AdMob Integration Container) -->
+                    <div class="bg-white rounded-2xl p-2 shadow-sm border border-slate-200 text-center relative">
+                        <div class="absolute top-1 right-2 bg-slate-200 text-slate-600 text-[8px] px-1.5 py-0.5 rounded font-mono">AdMob Banner</div>
+                        <div class="w-full bg-slate-100 rounded-xl p-3 flex flex-col items-center justify-center border border-dashed border-slate-300 min-h-[60px]">
+                            <div class="flex items-center space-x-2 text-slate-500 text-xs font-medium">
+                                <i class="fa-solid fa-rectangle-ad text-blue-600 text-base"></i>
+                                <span>[Google AdMob Banner Slot: ca-app-pub-xxxxxxxxxxxxxxxx/yyyyyyyyyy]</span>
+                            </div>
+                            <span class="text-[9px] text-slate-400 mt-0.5">अधिकृत पक्षाच्या आर्थिक सहाय्य व प्रचारासाठी गुगल ॲडमोब जाहिरात जागा</span>
+                        </div>
+                    </div>
+
+                    <!-- Media & Reels Quick Bar -->
+                    <div class="bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 rounded-2xl p-4 text-white shadow-md flex items-center justify-between">
+                        <div>
+                            <span class="bg-white/20 text-[9px] px-2 py-0.5 rounded-full font-bold uppercase">नवीन फिचर</span>
+                            <h4 class="text-sm font-bold mt-1">RPM रील, लाईव्ह व मीडिया कॉर्नर</h4>
+                            <p class="text-[10px] text-slate-100 mt-0.5">व्हिडिओ अपलोड करा, रील बनवा आणि लाइव्ह भाषण जोडा!</p>
+                        </div>
+                        <button onclick="switchTab('media')" class="bg-white text-slate-900 text-xs font-bold px-3 py-2 rounded-xl shadow whitespace-nowrap">
+                            ओपन करा <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- Latest Feed / News Stream -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">ताज्या घडामोडी व परिपत्रके</h4>
+                            <span class="text-[10px] text-blue-600 font-bold cursor-pointer">सर्व पहा</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                                <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1">
+                                    <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded font-medium">मध्यवर्ती कार्यालय</span>
+                                    <span>आज, १०:३० वाजता</span>
+                                </div>
+                                <h5 class="text-xs font-bold text-slate-800">छत्रपती संभाजीनगर येथे राज्यस्तरीय कार्यकर्ता बैठकीचे आयोजन</h5>
+                                <p class="text-[11px] text-slate-600 mt-1">पक्षप्रमुख माननीय राजुभाई साबळे यांच्या उपस्थितीत आगामी रणनीतीवर चर्चा होणार आहे.</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                                <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1">
+                                    <span class="bg-amber-50 text-amber-600 px-2 py-0.5 rounded font-medium">परिपत्रक</span>
+                                    <span>काल</span>
+                                </div>
+                                <h5 class="text-xs font-bold text-slate-800">जिल्हाध्यक्ष व तालुका पदाधिकाऱ्यांच्या नियुक्त्या जाहीर</h5>
+                                <p class="text-[11px] text-slate-600 mt-1">छत्रपती संभाजीनगर जिल्हाध्यक्षपदी दिनेश भाई गवई यांच्यासह नवीन पदाधिकाऱ्यांची निवड.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- TAB 2: MEMBERSHIP (स्वयं-सदस्य नोंदणी) -->
+                <div id="tab-membership" class="p-4 space-y-4 hidden">
+                    <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-md">
+                        <h3 class="text-base font-bold text-amber-300"><i class="fa-solid fa-id-card mr-2"></i>स्वयं-सदस्य नोंदणी</h3>
+                        <p class="text-xs text-blue-200 mt-1">रिपब्लिकन पार्टी ऑफ महाराष्ट्र (RPM) पक्षात सामील व्हा आणि तात्काळ डिजिटल ओळखपत्र प्राप्त करा.</p>
+                    </div>
+
+                    <!-- Form Card -->
+                    <div id="membership-form-card" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">पूर्ण नाव (Full Name) *</label>
+                            <input type="text" id="reg-name" placeholder="उदा. राहुल अशोक कांबळे" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-rpmBlue bg-slate-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">मोबाईल नंबर (Mobile Number) *</label>
+                            <div class="flex space-x-2">
+                                <input type="tel" id="reg-mobile" maxlength="10" placeholder="१० अंकी मोबाईल नंबर" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-rpmBlue bg-slate-50">
+                                <button onclick="sendOTP()" id="otp-btn" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 rounded-xl whitespace-nowrap">OTP पाठवा</button>
+                            </div>
+                        </div>
+                        <div id="otp-section" class="hidden">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">OTP पडताळणी (Verification Code)</label>
+                            <input type="text" id="reg-otp" maxlength="4" placeholder="४ अंकी OTP (उदा. 1234)" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-rpmBlue bg-slate-50">
+                            <span class="text-[10px] text-emerald-600 font-medium mt-1 block">✓ डेमो OTP: '1234' प्रविष्ट करा</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">जिल्हा (District)</label>
+                                <select id="reg-district" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-rpmBlue bg-slate-50">
+                                    <option value="छत्रपती संभाजीनगर">छत्रपती संभाजीनगर</option>
+                                    <option value="पुणे">पुणे</option>
+                                    <option value="मुंबई">मुंबई</option>
+                                    <option value="नागपूर">नागपूर</option>
+                                    <option value="नाशिक">नाशिक</option>
+                                    <option value="कोल्हापूर">कोल्हापूर</option>
+                                    <option value="अन्य">अन्य जिल्हा</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">तालुका / शहर</label>
+                                <input type="text" id="reg-taluka" placeholder="तालुका किंवा क्षेत्र" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-rpmBlue bg-slate-50">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">पत्ता (Address)</label>
+                            <textarea id="reg-address" rows="2" placeholder="सविस्तर पत्ता" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-rpmBlue bg-slate-50"></textarea>
+                        </div>
+                        <button onclick="registerMember()" class="w-full bg-gradient-to-r from-rpmBlue to-blue-800 hover:from-blue-900 hover:to-blue-900 text-white font-bold py-3 rounded-xl shadow text-xs mt-2 transition">
+                            सदस्य म्हणून नोंदणी करा & ID कार्ड मिळवा
+                        </button>
+                    </div>
+
+                    <!-- Digital ID Card Container (Initially Hidden) -->
+                    <div id="digital-id-card" class="hidden bg-gradient-to-br from-blue-900 via-rpmDarkBlue to-slate-900 text-white rounded-2xl p-5 shadow-xl border-2 border-amber-400 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-amber-400 text-slate-900 text-[9px] font-bold px-3 py-1 rounded-bl-xl">
+                            DIGITAL ID CARD
+                        </div>
+                        <div class="flex items-center space-x-3 mb-4 border-b border-blue-800 pb-3">
+                            <div class="w-10 h-10 rounded-full overflow-hidden border border-amber-400 flex items-center justify-center">
+                                <img src="181771.jpg" alt="Logo" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-amber-300">रिपब्लिकन पार्टी ऑफ महाराष्ट्र</h4>
+                                <span class="text-[9px] text-slate-300">Republican Party of Maharashtra (RPM)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-16 h-16 rounded-xl bg-slate-700 border-2 border-amber-400 flex items-center justify-center text-xl overflow-hidden">
+                                <i class="fa-solid fa-user text-slate-400"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h3 id="id-card-name" class="text-sm font-bold text-white">राहुल अशोक कांबळे</h3>
+                                <p class="text-[10px] text-amber-300">सदस्य आयडी: <span id="id-card-number" class="font-mono font-bold">RPM-2026-8942</span></p>
+                                <p class="text-[10px] text-slate-300">जिल्हा: <span id="id-card-district">छत्रपती संभाजीनगर</span></p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-950/80 p-2.5 rounded-xl border border-blue-800 text-[10px] text-slate-200 text-center italic mb-3">
+                            "मी संविधानाप्रती निष्ठावान राहून पक्षाच्या विचारांचे पालन करेन."
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <button onclick="shareIDCard()" class="flex-1 bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold py-2 rounded-xl text-xs transition flex items-center justify-center">
+                                <i class="fa-brands fa-whatsapp mr-1.5 text-sm"></i> WhatsApp वर शेअर करा
+                            </button>
+                            <button onclick="resetMembershipForm()" class="bg-blue-800 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-xl text-xs">
+                                नवीन नोंदणी
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: LEADERSHIP (पक्ष नेतृत्व व अधिकार कक्ष) -->
+                <div id="tab-leadership" class="p-4 space-y-4 hidden">
+                    <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-md">
+                        <h3 class="text-base font-bold text-amber-300"><i class="fa-solid fa-users-gear mr-2"></i>पक्ष नेतृत्व व अधिकार कक्ष</h3>
+                        <p class="text-xs text-blue-200 mt-1">पक्षाची केंद्रीय रचना आणि प्रशासकीय नियंत्रण.</p>
+                    </div>
+
+                    <!-- Top Leadership -->
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-100 text-amber-700 border-2 border-amber-400 flex items-center justify-center text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">पक्षप्रमुख (Party Chief)</span>
+                            <h4 class="text-sm font-bold text-slate-900 mt-1">माननीय राजुभाई साबळे</h4>
+                            <p class="text-[11px] text-slate-500">केंद्रीय मुख्य कार्यालय: जवाहर कॉलनी, छत्रपती संभाजीनगर</p>
+                        </div>
+                    </div>
+
+                    <!-- District Presidents Grid -->
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">जिल्हा अध्यक्ष मंडळ (District Leadership)</h4>
+                        <div class="space-y-2">
+                            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 flex justify-between items-center">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-xs font-bold text-slate-800">दिनेश भाई गवई</h5>
+                                        <p class="text-[10px] text-slate-500">जिल्हाध्यक्ष - छत्रपती संभाजीनगर</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full font-bold">सक्रिय</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 flex justify-between items-center">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-xs font-bold text-slate-800">इतर जिल्हाध्यक्ष</h5>
+                                        <p class="text-[10px] text-slate-500">पुणे, मुंबई, नागपूर व इतर जिल्हे</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-bold">मार्गदर्शन अंतर्गत</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Control Panel (Restricted Access Simulation) -->
+                    <div class="bg-slate-900 text-white p-4 rounded-2xl shadow-md border border-slate-800">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider"><i class="fa-solid fa-shield-halved mr-1"></i> Admin Control Panel</h4>
+                            <span class="text-[9px] bg-red-600/40 text-red-300 px-2 py-0.5 rounded border border-red-500/30">Restricted</span>
+                        </div>
+                        <p class="text-[11px] text-slate-300 mb-3">केवळ पक्षप्रमुख व थेट अधिकृत अधिकार्‍यांसाठी (नियुक्तीपत्रे व कक्ष व्यवस्थापन).</p>
+                        <button onclick="openAdminAuthModal()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs font-bold py-2.5 rounded-xl transition">
+                            अॅडमिन लॉगिन करा
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 4: EVENTS (जयंती व कार्यक्रम आठवण) -->
+                <div id="tab-events" class="p-4 space-y-4 hidden">
+                    <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-md">
+                        <h3 class="text-base font-bold text-amber-300"><i class="fa-solid fa-calendar-days mr-2"></i>जयंती व कार्यक्रम आठवण</h3>
+                        <p class="text-xs text-blue-200 mt-1">महापुरुषांच्या जयंत्या, स्मृतीदिन आणि पक्षसभांचे स्वयंचलित नियोजन.</p>
+                    </div>
+
+                    <!-- Calendar Highlights / Upcoming Events -->
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-amber-500">
+                            <div class="flex justify-between items-start">
+                                <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">आगामी कार्यक्रम</span>
+                                <span class="text-[10px] text-slate-400 font-semibold">१४ एप्रिल</span>
+                            </div>
+                            <h5 class="text-xs font-bold text-slate-800 mt-1">भारतरत्न डॉ. बाबासाहेब आंबेडकर जयंती महोत्सव</h5>
+                            <p class="text-[11px] text-slate-600 mt-0.5"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> मध्यवर्ती कार्यालय, जवाहर कॉलनी, छत्रपती संभाजीनगर</p>
+                            <div class="mt-2 flex justify-end">
+                                <button onclick="setReminder('डॉ. बाबासाहेब आंबेडकर जयंती')" class="text-[10px] bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded-lg border border-blue-200">
+                                    <i class="fa-solid fa-bell mr-1"></i> रिमाइंड सेट करा
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-blue-600">
+                            <div class="flex justify-between items-start">
+                                <span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">राज्यस्तरीय सभा</span>
+                                <span class="text-[10px] text-slate-400 font-semibold">येत्या रविवारी</span>
+                            </div>
+                            <h5 class="text-xs font-bold text-slate-800 mt-1">राजर्षी छत्रपती शाहू महाराज पुण्यतिथी अभिवादन सभा</h5>
+                            <p class="text-[11px] text-slate-600 mt-0.5"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> छत्रपती संभाजीनगर</p>
+                            <div class="mt-2 flex justify-end">
+                                <button onclick="setReminder('शाहू महाराज अभिवादन सभा')" class="text-[10px] bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded-lg border border-blue-200">
+                                    <i class="fa-solid fa-bell mr-1"></i> रिमाइंड सेट करा
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: CONTACT (संपर्क व मुख्य कार्यालय) -->
+                <div id="tab-contact" class="p-4 space-y-4 hidden">
+                    <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-md">
+                        <h3 class="text-base font-bold text-amber-300"><i class="fa-solid fa-map-location-dot mr-2"></i>संपर्क व मुख्य कार्यालय</h3>
+                        <p class="text-xs text-blue-200 mt-1">पक्षाच्या केंद्रीय कार्यालयाशी थेट संवाद साधा.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-slate-800">मुख्य कार्यालय पत्ता</h5>
+                                <p class="text-xs text-slate-600 mt-1">जवाहर कॉलनी, छत्रपती संभाजीनगर, महाराष्ट्र - ४३१००१</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-slate-800">हेल्पलाइन व संपर्क नंबर</h5>
+                                <p class="text-xs text-slate-600 mt-1">+९१ ९८०००००००० / +९१ २४०-००००००</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-100">
+                            <h5 class="text-xs font-bold text-slate-700 mb-2">अधिकृत सोशल मीडिया हँडल्स</h5>
+                            <div class="grid grid-cols-3 gap-2">
+                                <a href="#" class="bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-center text-xs font-bold text-blue-600 flex flex-col items-center">
+                                    <i class="fa-brands fa-facebook text-base mb-1"></i> Facebook
+                                </a>
+                                <a href="#" class="bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-center text-xs font-bold text-sky-500 flex flex-col items-center">
+                                    <i class="fa-brands fa-twitter text-base mb-1"></i> Twitter
+                                </a>
+                                <a href="#" class="bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-center text-xs font-bold text-red-600 flex flex-col items-center">
+                                    <i class="fa-brands fa-youtube text-base mb-1"></i> YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 7: MEDIA, LIVE & REELS (नवीन मीडिया कक्ष - फोटो, व्हिडिओ, रील्स व लाईव्ह) -->
+                <div id="tab-media" class="p-4 space-y-4 hidden">
+                    <div class="bg-gradient-to-r from-rpmBlue to-slate-900 text-white p-4 rounded-2xl shadow-md">
+                        <h3 class="text-base font-bold text-amber-300"><i class="fa-solid fa-photo-film mr-2"></i>मीडिया, लाईव्ह व रील कक्ष</h3>
+                        <p class="text-xs text-blue-200 mt-1">व्हिडिओ अपलोड करा, रील तयार करा आणि लाइव्ह कार्यक्रमांचे प्रेषण जोडा.</p>
+                    </div>
+
+                    <!-- Action Navigation Tabs inside Media -->
+                    <div class="grid grid-cols-3 gap-2 bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200">
+                        <button onclick="switchMediaSubTab('upload')" id="msub-upload-btn" class="py-2 text-xs font-bold rounded-xl bg-rpmBlue text-white transition">अपलोड कक्ष</button>
+                        <button onclick="switchMediaSubTab('reels')" id="msub-reels-btn" class="py-2 text-xs font-semibold rounded-xl text-slate-600 hover:bg-slate-100 transition">RPM रील्स</button>
+                        <button onclick="switchMediaSubTab('live')" id="msub-live-btn" class="py-2 text-xs font-semibold rounded-xl text-slate-600 hover:bg-slate-100 transition">लाइव्ह भाषण</button>
+                    </div>
+
+                    <!-- SUB-TAB 1: UPLOAD PHOTOS / VIDEOS / REELS -->
+                    <div id="msub-upload" class="space-y-4">
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                            <h4 class="text-xs font-bold text-slate-800"><i class="fa-solid fa-cloud-arrow-up text-blue-600 mr-1"></i> नवीन मीडिया फाईल किंवा रील अपलोड करा</h4>
+                            
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">शीर्षक / माहिती (Caption)</label>
+                                <input type="text" id="media-caption" placeholder="उदा. छत्रपती संभाजीनगर येथे कार्यकर्ता मेळावा..." class="w-full text-xs p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:border-rpmBlue">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">फाइल प्रकार निवडा</label>
+                                <select id="media-type" class="w-full text-xs p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:border-rpmBlue">
+                                    <option value="photo">फोटो (Photo)</option>
+                                    <option value="video">पूर्ण व्हिडिओ (Full Video)</option>
+                                    <option value="reel">RPM शॉर्ट रील (Short Reel)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">फाईल निवडा (Media File / Camera)</label>
+                                <input type="file" id="media-file-input" accept="image/*,video/*" class="w-full text-xs p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-rpmBlue hover:file:bg-blue-100">
+                            </div>
+
+                            <button onclick="handleMediaUpload()" class="w-full bg-gradient-to-r from-rpmBlue to-blue-800 text-white font-bold py-3 rounded-xl text-xs shadow hover:opacity-95 transition">
+                                <i class="fa-solid fa-upload mr-1"></i> अपलोड करा व प्रकाशित करा
+                            </button>
+                        </div>
+
+                        <!-- Live Feed Stream Grid -->
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">अलीकडील अपलोड केलेले मीडिया</h5>
+                            <div id="uploaded-media-feed" class="space-y-3">
+                                <!-- Default Mock Item -->
+                                <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-100 space-y-2">
+                                    <div class="flex items-center justify-between text-[10px] text-slate-400">
+                                        <span class="bg-blue-100 text-rpmBlue px-2 py-0.5 rounded font-bold">अधिकृत व्हिडिओ</span>
+                                        <span>आज, ११:०० वाजता</span>
+                                    </div>
+                                    <p class="text-xs font-bold text-slate-800">पक्षाचे केंद्रीय कार्यालय, छत्रपती संभाजीनगर येथे बैठक.</p>
+                                    <div class="w-full h-36 bg-slate-900 rounded-xl overflow-hidden relative flex items-center justify-center text-amber-300">
+                                        <i class="fa-solid fa-play text-3xl opacity-80"></i>
+                                        <div class="absolute bottom-2 left-2 text-[10px] text-white bg-black/60 px-2 py-0.5 rounded">01:45 mins</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-TAB 2: REELS VIEWER & CREATOR -->
+                    <div id="msub-reels" class="space-y-4 hidden">
+                        <div class="bg-gradient-to-r from-pink-600 to-purple-700 text-white p-4 rounded-2xl shadow-md text-center space-y-2">
+                            <h4 class="text-sm font-bold"><i class="fa-solid fa-clapperboard mr-1"></i> RPM शॉर्ट्स रील्स फीड</h4>
+                            <p class="text-[11px] text-pink-100">पक्षाच्या रॅलीज, भाषणे व महत्त्वाच्या घडामोडींचे छोटे व्हिडिओ (Reels).</p>
+                        </div>
+
+                        <!-- Reels Container (Simulated Vertical Reels Player) -->
+                        <div class="space-y-3" id="reels-feed-container">
+                            <div class="bg-slate-900 text-white rounded-2xl p-4 shadow-lg border border-slate-800 relative overflow-hidden min-h-[220px] flex flex-col justify-between">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                                <div class="relative z-20 flex justify-between items-center">
+                                    <span class="bg-red-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-circle text-[6px] mr-1 animate-pulse"></i> RPM REEL</span>
+                                    <span class="text-xs text-slate-300"><i class="fa-solid fa-heart text-red-500 mr-1"></i> 1.4K</span>
+                                </div>
+                                <div class="relative z-20 space-y-1 pt-12">
+                                    <h5 class="text-xs font-bold text-amber-300">जय भीम! संविधान बचाव रॅली झलक</h5>
+                                    <p class="text-[10px] text-slate-300">छत्रपती संभाजीनगर मुख्य रस्ता पदयात्रा.</p>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                                    <i class="fa-solid fa-play-circle text-6xl text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-TAB 3: LIVE BROADCAST & SPEECHES -->
+                    <div id="msub-live" class="space-y-4 hidden">
+                        <div class="bg-red-900/90 text-white p-4 rounded-2xl shadow-md border border-red-700 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-red-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full animate-pulse">● LIVE STREAM</span>
+                                <span class="text-[10px] text-red-200">सध्या सुरू आहे</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-amber-300">पक्षप्रमुख माननीय राजुभाई साबळे यांचे थेट मार्गदर्शन व लाईव्ह भाषण</h4>
+                            <p class="text-[11px] text-red-100">मध्यवर्ती कार्यालय, जवाहर कॉलनी, छत्रपती संभाजीनगर येथून थेट प्रक्षेपण.</p>
+                        </div>
+
+                        <!-- Add Live Link / Embed Form for Admins or Broadcasters -->
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                            <h5 class="text-xs font-bold text-slate-800"><i class="fa-solid fa-tower-broadcast text-red-600 mr-1"></i> नवीन लाईव्ह लिंक किंवा भाषण जोडा</h5>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">लाईव्ह कार्यक्रमाचे नाव</label>
+                                <input type="text" id="live-title-input" placeholder="उदा. राज्यस्तरीय सभा लाइव्ह प्रक्षेपण" class="w-full text-xs p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:border-rpmBlue">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">YouTube / Facebook लाईव्ह URL लिंक</label>
+                                <input type="url" id="live-url-input" placeholder="https://youtube.com/watch?v=..." class="w-full text-xs p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:border-rpmBlue">
+                            </div>
+                            <button onclick="addLiveBroadcast()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl text-xs shadow transition">
+                                <i class="fa-solid fa-satellite-dish mr-1"></i> लाईव्ह स्ट्रीम ॲपवर जोडा
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: PROFILE (खासदार/सदस्य प्रोफाइल) -->
+                <div id="tab-profile" class="p-4 space-y-4 hidden">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center space-y-3">
+                        <div class="w-20 h-20 bg-amber-400 text-rpmBlue rounded-full mx-auto flex items-center justify-center text-3xl font-bold shadow-inner">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <h3 id="profile-name" class="text-sm font-bold text-slate-900">अतिथी सदस्य</h3>
+                            <p id="profile-id" class="text-xs text-slate-500 font-mono mt-0.5">नोंदणी क्रमांक: लागू नाही</p>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-xl text-left text-xs text-blue-900 space-y-1">
+                            <p><strong>जिल्हा:</strong> <span id="profile-dist">छत्रपती संभाजीनगर</span></p>
+                            <p><strong>पक्ष पद:</strong> सामान्य कार्यकर्ता / सदस्य</p>
+                        </div>
+                        <button onclick="switchTab('membership')" class="w-full bg-rpmBlue text-white font-bold py-2.5 rounded-xl text-xs shadow">
+                            डिजिटल आयडी कार्ड पहा
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOTTOM NAVIGATION BAR -->
+            <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-3 flex justify-around items-center z-20 shadow-lg">
+                <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center text-rpmBlue transition">
+                    <i class="fa-solid fa-house text-base"></i>
+                    <span class="text-[10px] font-bold mt-1">मुख्य</span>
+                </button>
+                <button onclick="switchTab('membership')" id="nav-membership" class="flex flex-col items-center text-slate-400 hover:text-rpmBlue transition">
+                    <i class="fa-solid fa-id-card text-base"></i>
+                    <span class="text-[10px] font-medium mt-1">नोंदणी</span>
+                </button>
+                <button onclick="switchTab('leadership')" id="nav-leadership" class="flex flex-col items-center text-slate-400 hover:text-rpmBlue transition">
+                    <i class="fa-solid fa-users-gear text-base"></i>
+                    <span class="text-[10px] font-medium mt-1">नेतृत्व</span>
+                </button>
+                <button onclick="switchTab('events')" id="nav-events" class="flex flex-col items-center text-slate-400 hover:text-rpmBlue transition">
+                    <i class="fa-solid fa-calendar-days text-base"></i>
+                    <span class="text-[10px] font-medium mt-1">जयंती</span>
+                </button>
+                <button onclick="switchTab('media')" id="nav-media" class="flex flex-col items-center text-slate-400 hover:text-rpmBlue transition">
+                    <i class="fa-solid fa-photo-film text-base"></i>
+                    <span class="text-[10px] font-medium mt-1">मीडिया</span>
+                </button>
+            </nav>
+
+        </div>
+
+        <!-- CUSTOM NOTIFICATION MODAL -->
+        <div id="modal-container" class="absolute inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+            <div class="bg-white w-full max-w-xs rounded-2xl p-5 shadow-2xl text-center space-y-3">
+                <div id="modal-icon" class="w-12 h-12 rounded-full bg-blue-100 text-rpmBlue mx-auto flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <h4 id="modal-title" class="text-sm font-bold text-slate-900">सूचना</h4>
+                <p id="modal-message" class="text-xs text-slate-600">सुचना संदेश येथे दिसेल.</p>
+                <button onclick="closeModal()" class="w-full bg-rpmBlue text-white font-bold py-2 rounded-xl text-xs">ठीक आहे</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Splash screen auto-redirect logic after 2 seconds
+        window.onload = function() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 20;
+                const progressBar = document.getElementById('splash-progress');
+                if(progressBar) progressBar.style.width = progress + '%';
+                if(progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        const splash = document.getElementById('splash-screen');
+                        const mainApp = document.getElementById('main-app');
+                        if(splash) {
+                            splash.classList.add('opacity-0');
+                            setTimeout(() => {
+                                splash.style.display = 'none';
+                                mainApp.classList.remove('hidden');
+                                setTimeout(() => mainApp.classList.add('opacity-100'), 50);
+                            }, 500);
+                        }
+                    }, 300);
+                }
+            }, 400);
+        };
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            const tabs = ['home', 'membership', 'leadership', 'events', 'contact', 'media', 'profile'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                if(el) el.classList.add('hidden');
+                const nav = document.getElementById('nav-' + t);
+                if(nav) {
+                    nav.classList.remove('text-rpmBlue');
+                    nav.classList.add('text-slate-400');
+                    const span = nav.querySelector('span');
+                    if(span) span.classList.remove('font-bold');
+                }
+            });
+
+            const activeTab = document.getElementById('tab-' + tabId);
+            if(activeTab) activeTab.classList.remove('hidden');
+
+            const activeNav = document.getElementById('nav-' + tabId);
+            if(activeNav) {
+                activeNav.classList.remove('text-slate-400');
+                activeNav.classList.add('text-rpmBlue');
+                const span = activeNav.querySelector('span');
+                if(span) span.classList.add('font-bold');
+            }
+        }
+
+        // Media Sub-Tab Switching
+        function switchMediaSubTab(subTab) {
+            const subs = ['upload', 'reels', 'live'];
+            subs.forEach(s => {
+                const el = document.getElementById('msub-' + s);
+                if(el) el.classList.add('hidden');
+                const btn = document.getElementById('msub-' + s + '-btn');
+                if(btn) {
+                    btn.className = 'py-2 text-xs font-semibold rounded-xl text-slate-600 hover:bg-slate-100 transition';
+                }
+            });
+            const activeEl = document.getElementById('msub-' + subTab);
+            if(activeEl) activeEl.classList.remove('hidden');
+            const activeBtn = document.getElementById('msub-' + subTab + '-btn');
+            if(activeBtn) {
+                activeBtn.className = 'py-2 text-xs font-bold rounded-xl bg-rpmBlue text-white transition';
+            }
+        }
+
+        // Handle Media / Video / Reel Upload
+        function handleMediaUpload() {
+            const caption = document.getElementById('media-caption').value;
+            const type = document.getElementById('media-type').value;
+            if(!caption) {
+                showModal('अपूर्ण माहिती', 'कृपया मीडियासाठी योग्य शीर्षक किंवा माहिती प्रविष्ट करा.', 'error');
+                return;
+            }
+
+            const feed = document.getElementById('uploaded-media-feed');
+            const newItem = document.createElement('div');
+            newItem.className = 'bg-white rounded-2xl p-3 shadow-sm border border-slate-100 space-y-2';
+            newItem.innerHTML = `
+                <div class="flex items-center justify-between text-[10px] text-slate-400">
+                    <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">${type === 'reel' ? 'RPM रील' : (type === 'video' ? 'व्हिडिओ' : 'फोटो')}</span>
+                    <span>सध्याच अपलोड केले</span>
+                </div>
+                <p class="text-xs font-bold text-slate-800">${caption}</p>
+                <div class="w-full h-32 bg-slate-100 rounded-xl flex items-center justify-center text-blue-700 font-bold text-xs border border-slate-200">
+                    <i class="fa-solid fa-circle-check text-emerald-500 mr-2 text-base"></i> यशस्वीरित्या अपलोड झाले
+                </div>
+            `;
+            feed.insertBefore(newItem, feed.firstChild);
+            document.getElementById('media-caption').value = '';
+            document.getElementById('media-file-input').value = '';
+            showModal('यशस्वी', 'आपला मीडिया/रील यशस्वीरित्या ॲपवर अपलोड करण्यात आला आहे!', 'success');
+        }
+
+        // Add Live Broadcast
+        function addLiveBroadcast() {
+            const title = document.getElementById('live-title-input').value;
+            const url = document.getElementById('live-url-input').value;
+            if(!title || !url) {
+                showModal('त्रुटी', 'कृपया लाईव्ह कार्यक्रमाचे नाव व URL लिंक योग्य प्रविष्ट करा.', 'error');
+                return;
+            }
+            showModal('लाईव्ह जोडले', `'${title}' साठी लाईव्ह लिंक यशस्वीरित्या जोडली गेली आहे! आता सर्व कार्यकर्ते हे लाईव्ह पाहू शकतील.`, 'success');
+            document.getElementById('live-title-input').value = '';
+            document.getElementById('live-url-input').value = '';
+        }
+
+        // Send OTP Simulation
+        function sendOTP() {
+            const mobile = document.getElementById('reg-mobile').value;
+            if(mobile.length !== 10) {
+                showModal('त्रुटी', 'कृपया १० अंकी वैध मोबाईल नंबर प्रविष्ट करा.', 'error');
+                return;
+            }
+            document.getElementById('otp-section').classList.remove('hidden');
+            document.getElementById('otp-btn').innerText = 'पुनर्पाठवा';
+            showModal('OTP पाठवला', 'आपल्या मोबाईल नंबरवर डेमो OTP (1234) पाठवण्यात आला आहे.', 'success');
+        }
+
+        // Register Member & Generate Digital ID Card
+        function registerMember() {
+            const name = document.getElementById('reg-name').value;
+            const mobile = document.getElementById('reg-mobile').value;
+            const otp = document.getElementById('reg-otp').value;
+            const district = document.getElementById('reg-district').value;
+
+            if(!name || !mobile || !otp) {
+                showModal('अपूर्ण माहिती', 'कृपया सर्व आवश्यक तपशील आणि OTP प्रविष्ट करा.', 'error');
+                return;
+            }
+
+            if(otp !== '1234') {
+                showModal('चुकीचा OTP', 'कृपया वैध OTP (1234) प्रविष्ट करा.', 'error');
+                return;
+            }
+
+            // Generate ID
+            const uniqueId = 'RPM-2026-' + Math.floor(1000 + Math.random() * 9000);
+            
+            document.getElementById('id-card-name').innerText = name;
+            document.getElementById('id-card-number').innerText = uniqueId;
+            document.getElementById('id-card-district').innerText = district;
+
+            // Update Profile Tab as well
+            document.getElementById('profile-name').innerText = name;
+            document.getElementById('profile-id').innerText = 'नोंदणी क्रमांक: ' + uniqueId;
+            document.getElementById('profile-dist').innerText = district;
+
+            // Hide form, show ID card
+            document.getElementById('membership-form-card').classList.add('hidden');
+            document.getElementById('digital-id-card').classList.remove('hidden');
+
+            showModal('अभिनंदन!', 'आपली रिपब्लिकन पार्टी ऑफ महाराष्ट्र पक्षात यशस्वी नोंदणी झाली आहे!', 'success');
+        }
+
+        function resetMembershipForm() {
+            document.getElementById('reg-name').value = '';
+            document.getElementById('reg-mobile').value = '';
+            document.getElementById('reg-otp').value = '';
+            document.getElementById('reg-taluka').value = '';
+            document.getElementById('reg-address').value = '';
+            document.getElementById('otp-section').classList.add('hidden');
+            document.getElementById('digital-id-card').classList.add('hidden');
+            document.getElementById('membership-form-card').classList.remove('hidden');
+        }
+
+        function shareIDCard() {
+            const name = document.getElementById('id-card-name').innerText;
+            const idNo = document.getElementById('id-card-number').innerText;
+            const text = encodeURIComponent(`जय भीम! मी अधिकृतपणे 'रिपब्लिकन पार्टी ऑफ महाराष्ट्र' (RPM) चा सदस्य झालो आहे. माझा डिजिटल सदस्य क्रमांक आहे: ${idNo}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+        function setReminder(eventName) {
+            showModal('रिमाइंड सेट केले', `'${eventName}' साठी २४ तास आधी पुश नोटिफिकेशन अलार्म सेट करण्यात आला आहे.`, 'success');
+        }
+
+        function openNotificationModal() {
+            showModal('सूचना व अलर्ट्स', 'पक्षाकडून कोणतेही नवीन आपत्कालीन किंवा अधिकृत परिपत्रक सध्या प्रलंबित नाही.', 'info');
+        }
+
+        function openAdminAuthModal() {
+            showModal('अॅडमिन कक्ष', 'हा अधिकार केवळ पक्षप्रमुख माननीय राजुभाई साबळे व केंद्रीय अधिकृत पदाधिकाऱ्यांसाठी आहे.', 'info');
+        }
+
+        // Custom Modal Utility (No alert/confirm)
+        function showModal(title, message, type) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            const iconEl = document.getElementById('modal-icon');
+            if(type === 'error') {
+                iconEl.className = 'w-12 h-12 rounded-full bg-red-100 text-red-600 mx-auto flex items-center justify-center text-xl';
+                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            } else {
+                iconEl.className = 'w-12 h-12 rounded-full bg-blue-100 text-rpmBlue mx-auto flex items-center justify-center text-xl';
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            }
+            document.getElementById('modal-container').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
