@@ -201,25 +201,6 @@
                     </div>
 
                     <!-- GOOGLE ADMOB BANNER AD SLOT (AdMob Integration Container) -->
-                    // --- RPM Unity Ads Handler ---
-const UNITY_GAME_ID = "800373218";
-
-// 1. Banner Ad Code
-function loadUnityBanner() {
-    console.log("Unity Banner Active: BP_Banner_Android (Game ID: " + UNITY_GAME_ID + ")");
-}
-
-// 2. Interstitial Ad Code (Full Screen)
-function showUnityInterstitial() {
-    console.log("Showing Unity Interstitial: BP_Interstitial_Android");
-    // येथे युनिटी इन्टरिस्टिशियल जाहिरात लोड होईल
-}
-
-// 3. Rewarded Ad Code (Video Reward)
-function showUnityRewarded() {
-    console.log("Showing Unity Rewarded: BP_Rewarded_Android");
-    // येथे युनिटी रिवॉर्डेड जाहिरात लोड होईल
-}
                     <div class="bg-white rounded-2xl p-2 shadow-sm border border-slate-200 text-center relative">
                         <div class="absolute top-1 right-2 bg-slate-200 text-slate-600 text-[8px] px-1.5 py-0.5 rounded font-mono">AdMob Banner</div>
                         <div class="w-full bg-slate-100 rounded-xl p-3 flex flex-col items-center justify-center border border-dashed border-slate-300 min-h-[60px]">
@@ -900,6 +881,24 @@ function showUnityRewarded() {
         function closeModal() {
             document.getElementById('modal-container').classList.add('hidden');
         }
+        // --- RPM Unity Ads Handler ---
+const UNITY_GAME_ID = "800373218";
+
+// 1. Banner Ad Code
+function loadUnityBanner() {
+    console.log("Unity Banner Active: BP_Banner_Android (Game ID: " + UNITY_GAME_ID + ")");
+}
+
+// 2. Interstitial Ad Code (Full Screen)
+function showUnityInterstitial() {
+    console.log("Showing Unity Interstitial: BP_Interstitial_Android");
+}
+
+// 3. Rewarded Ad Code (Video Reward)
+function showUnityRewarded() {
+    console.log("Showing Unity Rewarded: BP_Rewarded_Android");
+}
+
     </script>
 </body>
 </html>
